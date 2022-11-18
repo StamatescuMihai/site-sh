@@ -1,0 +1,25 @@
+<img hidden *ngFor="let img of images;" [src]="img" (load)="onLoad()"/>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div *ngFor="let image of images; let i = index">
+        <div *ngIf="currentImage==i" fxLayout="row" fxLayoutAlign="center center" class="fade">
+            <div>
+                <button mat-icon-button aria-label="Left button for slideshow" (click)="onChangeCurrentImage(-1)" style="transform: translate(+3vw, 0);">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+            </div>
+            <div>
+                <img [src]=image alt="image">
+            </div>
+            <div>
+                <button mat-icon-button aria-label="Right button for slideshow" (click)="onChangeCurrentImage(+1)" style="transform: translate(-3vw, 0);">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <ng-container *ngFor="let image of images; let i=index">
+            <div class="dot" [class.highlited]="i==currentImage" (click)="onChangeCurrentImageFull(i)"></div>
+        </ng-container>
+    </div>
+</div>
